@@ -16,7 +16,9 @@ var _ = require( "underscore" ),
 Backbone.$ = require( "jquery" );
 
 var TerminalElementView = require( "./terminals-list-element" );
+/*
 var mapView = require( "./map" );
+*/
 
 var _tpl;
 
@@ -61,7 +63,7 @@ module.exports = Backbone.View.extend( {
         $("#header")
         .find("#back")
         .css("display", "none")
-        .end()
+        .end();
 
         $("#gmap")
         .attr("class", "blured")
@@ -71,7 +73,7 @@ module.exports = Backbone.View.extend( {
         $("#header")
           .find("#problems")
             .css("display", "none")
-            .end()
+            .end();
 
         this.$el
             .attr( "id", "result" )

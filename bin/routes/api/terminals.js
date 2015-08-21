@@ -14,8 +14,10 @@ var api = require( root + "/core/middlewares/api.js" ),
 
 var Terminal = db.get( "Terminal" );
 
-var iMaxSearchRadius = 20,
-    iArcKilometer = 0.009259;
+var iMaxSearchRadius = 150,
+    iArcKilometer = 0.009259,
+    iAdminMaxSearchRadius = 350;
+
 
 // [GET] /api/terminals
 
@@ -150,31 +152,97 @@ var empty = function( oRequest, oResponse ) {
         } );
 };
 
-var reposition = function( oRequest, oResponse ) {
-  Terminal
-  .findById( oRequest.params.id )
-  .exec( function( oError, oTerminal ) {
-    if( oError ) {
-      return api.error( oRequest, oResponse, oError.type, oError );
-    }
-    if( !oTerminal ) {
-      return api.error( oRequest, oResponse, "TERMINAL_UNKNOWN" );
-    }
-    oTerminal.empty = true;
-    oTerminal.save( function( oError, oSavedTerminal ) {
-      if( oError ) {
-        return api.error( oRequest, oResponse, oError.type, oError );
-      }
-      api.send( oRequest, oResponse, true );
-    } );
-  } );
+var full = function( oRequest, oResponse ) {
+    Terminal
+        .findById( oRequest.params.id )
+        .exec( function( oError, oTerminal ) {
+            if( oError ) {
+                return api.error( oRequest, oResponse, oError.type, oError );
+            }
+            if( !oTerminal ) {
+                return api.error( oRequest, oResponse, "TERMINAL_UNKNOWN" );
+            }
+            oTerminal.empty = false;
+            oTerminal.save( function( oError, oSavedTerminal ) {
+                if( oError ) {
+                    return api.error( oRequest, oResponse, oError.type, oError );
+                }
+                api.send( oRequest, oResponse, true );
+            } );
+        } );
+};
+
+
+var changeAddress = function( oRequest, oResponse ) {
+    Terminal
+        .findById( oRequest.params.id )
+        .exec( function( oError, oTerminal ) {
+            if( oError ) {
+                return api.error( oRequest, oResponse, oError.type, oError );
+            }
+            if( !oTerminal ) {
+                return api.error( oRequest, oResponse, "TERMINAL_UNKNOWN" );
+            }
+            oTerminal.address = oRequest.params.address;
+            oTerminal.save( function( oError, oSavedTerminal ) {
+                if( oError ) {
+                    return api.error( oRequest, oResponse, oError.type, oError );
+                }
+                api.send( oRequest, oResponse, true );
+            } );
+        } );
+};
+
+var changePosition = function( oRequest, oResponse ) {
+    Terminal
+        .findById( oRequest.params.id )
+        .exec( function( oError, oTerminal ) {
+            if( oError ) {
+                return api.error( oRequest, oResponse, oError.type, oError );
+            }
+            if( !oTerminal ) {
+                return api.error( oRequest, oResponse, "TERMINAL_UNKNOWN" );
+            }
+            oTerminal.address = oRequest.params.address;
+            oTerminal.latitude = oRequest.params.latitude;
+            oTerminal.longitude = oRequest.params.longitude;
+
+            oTerminal.save( function( oError, oSavedTerminal ) {
+                if( oError ) {
+                    return api.error( oRequest, oResponse, oError.type, oError );
+                }
+                api.send( oRequest, oResponse, true );
+            } );
+        } );
+};
+
+var changeBank = function( oRequest, oResponse ) {
+    Terminal
+        .findById( oRequest.params.id )
+        .exec( function( oError, oTerminal ) {
+            if( oError ) {
+                return api.error( oRequest, oResponse, oError.type, oError );
+            }
+            if( !oTerminal ) {
+                return api.error( oRequest, oResponse, "TERMINAL_UNKNOWN" );
+            }
+            oTerminal.bank = oRequest.params.bank;
+            oTerminal.save( function( oError, oSavedTerminal ) {
+                if( oError ) {
+                    return api.error( oRequest, oResponse, oError.type, oError );
+                }
+                api.send( oRequest, oResponse, true );
+            } );
+        } );
 };
 
 // Declare routes
 exports.init = function( oApp ) {
     oApp.get( "/api/terminals", list );
-    oApp.get( "/api/terminals/map", map );
     oApp.get( "/api/terminals/:id", details );
     oApp.put( "/api/terminals/:id/empty", empty );
-    oApp.put( "/api/terminals/:id/reposition", reposition );
+    oApp.put( "/api/terminals/:id/full", full );
+    oApp.put( "/api/terminals/:id/:address/changeaddress", changeAddress );
+    oApp.put( "/api/terminals/:id/:address/:latitude/:longitude/changeposition", changePosition );
+    oApp.put( "/api/terminals/:id/:bank/changebank", changeBank );
 };

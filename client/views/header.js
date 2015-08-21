@@ -58,6 +58,7 @@ module.exports = Backbone.View.extend( {
     "reloadButtonClicked": function( e ) {
         e.preventDefault();
         console.log( "reloadButtonClicked" );
+        Backbone.history.loadUrl(Backbone.history.fragment);
     },
 
     "backButtonClicked": function( e ) {
@@ -78,12 +79,12 @@ module.exports = Backbone.View.extend( {
           .children("a").remove();
       }else{
         $(".problems")
-        .append("<a href=\"#\" id=\"delete_terminal\">Pas de distributeur ici</a>")
-        .append("<a href=\"#\" id=\"wrong_place_terminal\">Mauvaise place sur la carte</a>")
-        .append("<a href=\"#\" id=\"wrong_bank_terminal\">Mauvaise banque</a>")
-        .append("<a href=\"#\" id=\"double_terminal\">Distributeur en double</a>")
-        .fadeIn()
-        .end();
+            .append("<a href=\"#\" id=\"delete_terminal\">Pas de distributeur ici</a>")
+            .append("<a href=\"#\" id=\"wrong_place_terminal\">Mauvaise place sur la carte</a>")
+            .append("<a href=\"#\" id=\"wrong_bank_terminal\">Mauvaise banque</a>")
+            .append("<a href=\"#\" id=\"double_terminal\">Distributeur en double</a>")
+            .fadeIn()
+            .end();
       }
     }
 } );

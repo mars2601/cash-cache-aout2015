@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Chech-Lajan</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+        <link rel="stylesheet" href="styles/stylesheets/screen.css" media="screen" />
+
+        <meta name="apple-mobile-web-app-title" content="Cash-Cache" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <link rel="apple-touch-icon-precomposed" href="images/icons/57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/144.png" />
+
+        <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" href="images/startup/320x460.png" />
+        <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" href="images/startup/640x920.png" />
+        <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="images/startup/640x1096.png" />
+    </head>
+    <body>
+        <div class="header">
+
+        </div>
+        <div id="demo">
+            <!-- gmap insertion point -->
+            <!-- gmap insertion point -->
+            <div id="map-holder">
+                <div id="gmap"></div>
+            </div>
+            <div id="main">
+                <!-- header insertion point -->
+                <!-- result insertion point -->
+                <!-- details insertion point -->
+                <!-- aboutbox insertion point -->
+            </div>
+
+
+            <script type="text/template" id="tpl-header">
+                <header>
+                    <a href="#" id="back">retour</a>
+                    <h1>Chech-Lajan</h1>
+                </header>
+                <section id="status">
+                    <h2></h2>
+                    <div class="reload">
+                        <a href="#" id="reload"></a>
+                    </div>
+                </section>
+            </script>
+
+            <script type="text/template" id="tpl-list">
+                <div>
+                    <form id="changeRadius">
+                        <div>
+                            <label for="radius">Zone de recherche :</label>
+                            <span id="radiusValue"></span>
+                        </div>
+                        <input type="range" id="radius" min="1" max="350" class="range">
+                    </form>
+                </div>
+                <a href="#" id="show" class="shown">Voir la liste des distributeurs</a>
+                <a href="#" id="hide" class="hidden">Cacher la liste des distributeurs</a>
+                <ul></ul>
+            </script>
+
+            <script type="text/template" id="tpl-list-terminals">
+                <a href="#" class="details">
+                        <img src="" alt="" width="16" height="16" />
+                        <strong></strong>
+                        <span></span>
+                </a>
+            </script>
+
+            <script type="text/template" id="tpl-details">
+                <div href="#" class="details">
+                        <h3>
+                            <img src="" alt="" width="16" height="16" />
+                            <span class="name"></span>
+                        </h3>
+                        <address></address>
+                        <span id="empty">Le distributeur est vide</span>
+                        <span id="full">Le distributeur est rempli</span>
+                    <div class="infos">
+                        <span id="distance"></span>
+                    </div>
+                </div>
+                <div class="tools">
+                    <span class="toolWrapper">
+                        <a href="#" id="emptyTerminal" class="tool" title="Signaler le distributeur comme vide">Signaler comme vide</a>
+                        <a href="#" id="fullTerminal" class="tool" title="Signaler le distributeur comme rempli">Signaler comme rempli</a>
+                    </span>
+                    <span class="toolWrapper">
+                        <a href="#" id="wrongAddress" class="tool" title="Changer l'adresse de la banque">Changer l'adresse</a>
+                    </span>
+                    <div class="changeAddress formulaire toolWrapper">
+                        <form action="#" method="post" id="changeAddress">
+                            <input type="text" class="text" id="address" name="address" placeholder="L'adresse de la banque" value=""/>
+                            <input type="submit" class="submit" value="Valider"/>
+                        </form>
+                    </div>
+                    <span class="toolWrapper">
+                        <a href="#" id="wrongBank" class="tool" title="Changer la banque">Changer la banque</a>
+                    </span>
+                    <div class="changeBank formulaire toolWrapper">
+                        <form action="#" method="post" id="changeBank">
+                            <select id="bankSelect" name="bank">
+                                <option value="53937660e0b8c05979c6ea55">Argenta</option>
+                                <option value="53937660e0b8c05979c6ea56">AXA</option>
+                                <option value="53937660e0b8c05979c6ea57">Belfius</option>
+                                <option value="53937660e0b8c05979c6ea58">BeoBank</option>
+                                <option value="53937660e0b8c05979c6ea59">BPost Banque</option>
+                                <option value="53937660e0b8c05979c6ea5a">Crelan</option>
+                                <option value="53937660e0b8c05979c6ea5b">CBC</option>
+                                <option value="53937660e0b8c05979c6ea5c">KBC</option>
+                                <option value="53937660e0b8c05979c6ea5d">Keytrade Bank</option>
+                                <option value="53937660e0b8c05979c6ea5e">BNP Paribas Fortis</option>
+                                <option value="53937660e0b8c05979c6ea5f">ING</option>
+                                <option value="53937660e0b8c05979c6ea60">BKCP</option>
+                                <option value="53937660e0b8c05979c6ea61">Delta Lloyd Bank</option>
+                                <option value="53937660e0b8c05979c6ea62">Deutsche Bank</option>
+                            </select>
+                            <input type="submit" class="submit"value="Valider"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            </script>
+        
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/libs.min.js"></script>
+        <script>
+            window.app = {
+                "id": "chech-lajan",
+                "name": "Chèch Lajan",
+                "version": "0.0.1",
+                "api_url": "http://192.168.111.222"
+            };
+        </script>
+        <script src="js/admin.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxZsUvPLbTP4Eduzy-AHhrOc9UkGariEM" type="text/javascript"></script>
+    </body>
+</html>

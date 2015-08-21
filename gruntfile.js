@@ -31,6 +31,14 @@ module.exports = function( grunt ) {
                 "files": {
                     "static/js/app.js": "client/app.js"
                 }
+            },
+            "admin": {
+                "options": {
+                    "external": aBrowserifyLibs
+                },
+                "files": {
+                    "static/js/admin.js": "admin/admin.js"
+                }
             }
         },
         "uglify": {
@@ -46,6 +54,11 @@ module.exports = function( grunt ) {
                 "files": {
                     "static/js/app.min.js": "static/js/app.js"
                 }
+            },
+            "admin": {
+                "files": {
+                    "static/js/admin.min.js": "static/js/admin.js"
+                }
             }
         },
         "watch": {
@@ -58,6 +71,17 @@ module.exports = function( grunt ) {
                 "tasks": [
                     "browserify:app",
                     "uglify:app"
+                ]
+            },
+            "admin": {
+                "files": [ "admin/**/*.js" ],
+                "options": {
+                    "spawn": false,
+                    "livereload": true
+                },
+                "tasks": [
+                    "browserify:admin",
+                    "uglify:admin"
                 ]
             }
         }

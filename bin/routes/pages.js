@@ -27,8 +27,13 @@ var showFirstJade = function( oRequest, oResponse ) {
     } );
 };
 
+var adminpage = function( oRequest, oResponse ) {
+    oResponse.sendFile( require( "path" ).resolve( root + "/../static/admin.html" ) );
+};
+
 // Declare routes
 exports.init = function( oApp ) {
     oApp.get( "/", homepage );
+    oApp.get( "/admin", adminpage );
     oApp.get( "/jade.test", showFirstJade );
 };

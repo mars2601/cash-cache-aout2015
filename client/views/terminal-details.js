@@ -175,7 +175,7 @@ module.exports = Backbone.View.extend( {
                 .css( "top", "auto" )
                 .css( "bottom", "0" )
                 .css( "text-align", "right" )
-                .find( "> span" )
+                .find( "#distance" )
                     .text( ( jeyodistans( oTerminalPosition, window.app.currentPosition ) * 1000 ) + "m" )
                     .end()
                 .end()
@@ -193,7 +193,6 @@ module.exports = Backbone.View.extend( {
         e.preventDefault();
         var that = this;
         this.model.set( "empty", false );
-        console.log(this.model);
         this.model.save( null, {
             "url": "/api/terminals/" + this.model.get( "id" ) + "/empty",
             "success": function() {
@@ -263,6 +262,8 @@ module.exports = Backbone.View.extend( {
       var that;
       that = this.model;
 
+
+
       // New event click -> create marker and set position
       google.maps.event.addListener(map, 'click', function( e ) {
         var image = '../../images/markers/terminal-marker.png';
@@ -270,12 +271,13 @@ module.exports = Backbone.View.extend( {
         addMarker(CurrentLatlng, "../../images/markers/me-marker.png");
         addMarker(e.latLng, image);
         setNewLatLng = e.latLng;
-        // add confirm button
 
+
+        // add confirm button
         if($("#confirm-button").length){
         }else{
-          $("#demo")
-          .append("<a href=\"#\" id=\"confirm-button\" >Confirmer la nouvelle localisation</a>");
+            $("#demo")
+          .append("<a href=\"#\" id=\"confirm-button\" >Confirmer la nouvelle localisatn</a>");
 
           // confirm the new localisation
           $("#confirm-button").click(function(){
@@ -283,6 +285,8 @@ module.exports = Backbone.View.extend( {
             that.set( "latitude", setNewLatLng.D );
             that.set( "longitude", setNewLatLng.k );
             console.log(that);
+            console.log(setNewLatLng.D);
+            console.log(setNewLatLng.k);
             that.save( null, {
               "url": "/api/terminals/" + that.get( "id" ) + "/reposition",
               "success": function() {

@@ -38,6 +38,9 @@ html {
 /* line 24, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
+    position: relative;
+    max-height: 100%;
+    overflow: scroll;
 }
 
 /* line 26, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/reset/_utilities.scss */
@@ -1181,4 +1184,206 @@ body.android.old:after {
     height: 875px;
     background: transparent url('/images/nexus-5.png') top left no-repeat;
   }
+}
+
+#status {
+    min-height: 15px;
+}
+ #changeRadius{
+     padding: 5px 12px;
+     border-left: 6px solid #1ABC9C;
+ }#changeRadius input[type="range"]{
+    width: 100%;
+   }
+  #show, #hide{
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border-left: 6px solid #1ABC9C;
+      color:#212542;
+      text-decoration: none;
+      text-transform: uppercase;
+  }
+
+#show:before, #hide:before {
+    content: "";
+    font: normal 1.6em "FontAwesome";
+    padding-right: 10px;
+    position: relative;
+    top: 3px;
+}
+#hide:before{
+    content: "";
+}
+
+/* line 210, ../sass/screen.sass */
+ul li a.details {
+    display: block;
+    padding: 14px 13px;
+    text-decoration: none;
+    *zoom: 1;
+}
+/* line 38, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.1/stylesheets/compass/utilities/general/_clearfix.scss */
+ul li a.details:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* line 215, ../sass/screen.sass */
+ul li a.details img {
+    height: 16px;
+    vertical-align: middle;
+    margin: 0 5px 0 0;
+}
+/* line 219, ../sass/screen.sass */
+ul li a.details strong {
+    font: bold 1.6em "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    vertical-align: middle;
+    color: #333;
+}
+/* line 223, ../sass/screen.sass */
+ul li a.details span {
+    font: 300 1.2em "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    float: right;
+    margin: 4px 0 0;
+    color: #1ABC9C;
+}
+/* line 230, ../sass/screen.sass */
+ul li.empty a.details img {
+    display: none;
+}
+/* line 232, ../sass/screen.sass */
+ul li.empty a.details strong:before {
+    content: "";
+    font: normal 1em "FontAwesome";
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+
+
+
+#main div.details {
+    display: block;
+    position: relative;
+    padding: 8px 8px;
+    min-height: 25px;
+}
+/* line 265, ../sass/screen.sass */
+#main div.details h3 {
+    margin: 0 auto 3px;
+}
+/* line 267, ../sass/screen.sass */
+#main div.details h3 img {
+    height: 16px;
+    margin: 0 5px 0 0;
+    vertical-align: middle;
+}
+/* line 271, ../sass/screen.sass */
+#main div.details h3 span {
+    color: #333;
+    font: bold 1.4em "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    vertical-align: middle;
+}
+/* line 275, ../sass/screen.sass */
+#main div.details address {
+    margin: 0 auto;
+    padding: 0 150px 0 0;
+    font: normal 1.2em/1.5 "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* line 279, ../sass/screen.sass */
+#main div.details div.empty {
+    margin: 4px auto 0;
+}
+/* line 281, ../sass/screen.sass */
+#main div.details div.empty p {
+    display: inline-block;
+    padding: 4px 6px 3px;
+    font: normal 1.6em "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #212542;
+    color: white;
+}
+/* line 287, ../sass/screen.sass */
+#main div.details div.empty p:before {
+    content: "";
+    font: normal 1em "FontAwesome";
+    margin: 0 3px 0 0;
+    vertical-align: middle;
+}
+/* line 292, ../sass/screen.sass */
+#main div.details div.infos {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
+/* line 296, ../sass/screen.sass */
+#main div.details div.infos span#distance {
+    display: inline-block;
+    padding: 4px 6px;
+    font: normal 1.6em "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #1ABC9C;
+    color: white;
+    margin: 0 2px 0 0;
+    vertical-align: middle;
+}
+/* line 304, ../sass/screen.sass */
+#main div.details div.infos a#refresh-me {
+    position: relative;
+    display: inline-block;
+    padding: 5px 6px 4px;
+    font: normal 1.6em "FontAwesome";
+    background: #1ABC9C;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+
+
+.tools .toolWrapper{
+    padding: 8px 12px;
+    border-left: 6px solid #1ABC9C;
+    display: block;
+
+}
+.tools .toolWrapper a{
+    color: #212542;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.tools .changeAddress,.tools .changeBank{
+    display: none;
+}
+
+
+/* line 304, ../sass/screen.sass */
+#main #details div.infos a#reload {
+    position: relative;
+    display: inline-block;
+    padding: 5px 6px 4px;
+    font: normal 1.6em "FontAwesome";
+    background: #1ABC9C;
+    color: white;
+    text-decoration: none;
+    vertical-align: middle;
+}
+/* line 313, ../sass/screen.sass */
+#main #details div.infos a#reload span {
+    display: none;
+}
+/* line 315, ../sass/screen.sass */
+#main #details div.infos a#reload:before {
+    content: "";
+}
+/* line 317, ../sass/screen.sass */
+#main #details div.infos a#reload:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 44px;
+    height: 44px;
+    top: -10px;
+    left: -10px;
+    background: transparent;
 }

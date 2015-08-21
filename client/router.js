@@ -19,7 +19,6 @@ var TerminalModel = require( "./models/terminal" );
 var TerminalsListView = require( "./views/terminals-list" );
 var TerminalDetailsView = require( "./views/terminal-details" );
 var TerminalsMapView = require( "./views/terminals-map" );
-var TerminalsMapView = require( "./views/terminals-map" );
 
 
 var oPosition;
@@ -49,8 +48,8 @@ module.exports = Backbone.Router.extend( {
         jeolok.getCurrentPosition( { "enableHighAccuracy": true, "timeout": 11500 }, function( oError, oGivenPosition ) {
           if( oError || !oGivenPosition ) {
             oPosition = {
-              latitude: 50.84275,
-              longitude: 4.35154
+                latitude: 50.6833,
+                longitude: 5.55
             };
           } else {
             oPosition = oGivenPosition.coords;
